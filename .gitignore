@@ -2,6 +2,10 @@
 **/.DS_Store
 node_modules/
 dist/
+*.zip
+outputs/social-assets/*.png
+outputs/weekly-social-pack-*/assets/
+outputs/weekly-social-pack-*/contact-sheet.png
 .env
 .env.*
 *.log
