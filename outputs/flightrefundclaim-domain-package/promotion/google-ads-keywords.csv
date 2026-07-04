@@ -1,0 +1,22 @@
+Campaign,Ad Group,Keyword,Match Type,Intent
+UK Claims,Flight Delay,"flight delay compensation uk",Phrase,High
+UK Claims,Flight Delay,"claim flight delay compensation",Phrase,High
+UK Claims,Flight Delay,"delayed flight compensation",Phrase,High
+UK Claims,Cancellations,"cancelled flight compensation uk",Phrase,High
+UK Claims,Cancellations,"flight cancelled compensation",Phrase,High
+UK Claims,UK261,"uk261 compensation",Exact,High
+UK Claims,EC261,"ec261 compensation claim",Phrase,High
+Airline Claims,Ryanair,"ryanair delay compensation",Phrase,High
+Airline Claims,easyJet,"easyjet compensation claim",Phrase,High
+Airline Claims,Wizz Air,"wizz air compensation",Phrase,High
+Airline Claims,British Airways,"british airways delay compensation",Phrase,High
+US Travellers,Europe Delay,"europe flight delay compensation for americans",Phrase,High
+US Travellers,UK/EU Rights,"eu flight compensation us passenger",Phrase,High
+US Travellers,Airlines,"american airlines europe delay compensation",Phrase,Medium
+US Travellers,Airlines,"delta europe flight delay compensation",Phrase,Medium
+US Travellers,Airlines,"united europe flight delay compensation",Phrase,Medium
+Negative,General,"jobs",Negative,Low
+Negative,General,"baggage",Negative,Low
+Negative,General,"seat refund",Negative,Low
+Negative,General,"customer service number",Negative,Low
+Negative,General,"free template",Negative,Low

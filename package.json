@@ -1,0 +1,1 @@
+{"scripts":{"build":"node build-site.js","build:uk":"SITE=uk node build-site.js","build:us":"SITE=us node build-site.js"},"engines":{"node":">=18"},"private":true}

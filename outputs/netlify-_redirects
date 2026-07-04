@@ -1,0 +1,7 @@
+https://www.flightrefundclaim.co.uk/* https://flightrefundclaim.co.uk/:splat 301!
+http://flightrefundclaim.co.uk/* https://flightrefundclaim.co.uk/:splat 301!
+http://www.flightrefundclaim.co.uk/* https://flightrefundclaim.co.uk/:splat 301!
+
+# Keep .com separate for the US traveller page.
+# Use the separate .com redirect file in:
+# outputs/flightrefundclaim-domain-package/us-site/_redirects
