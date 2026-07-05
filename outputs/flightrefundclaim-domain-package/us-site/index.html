@@ -200,8 +200,11 @@ section{padding:110px 24px;position:relative;}
 .testi-avatar{width:48px;height:48px;border-radius:50%;background:var(--bg-surface-alt);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--text-main);font-size:16px;border:1px solid var(--border);}
 .testi-name{font-size:15px;font-weight:600;color:var(--text-main);}
 .testi-flight{font-size:13px;color:var(--text-muted);margin-top:2px;}
-#checker{background:var(--bg-surface);padding:120px 24px;}
+#checker{background:var(--bg-surface);padding:120px 24px;scroll-margin-top:88px;}
 .checker-box{max-width:720px;margin:0 auto;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:var(--radius-lg);padding:56px;box-shadow:0 25px 50px -12px rgba(15,23,42,0.15);position:relative;}
+body.checker-focus-active #hero,body.checker-focus-active .trust-bar,body.checker-focus-active .trust-proof,body.checker-focus-active #how,body.checker-focus-active #compensation,body.checker-focus-active #testimonials,body.checker-focus-active #guides,body.checker-focus-active #faq,body.checker-focus-active #contact{display:none!important;}
+body.checker-focus-active #checker{min-height:100svh;display:flex;align-items:flex-start;padding-top:96px;padding-bottom:48px;}
+body.checker-focus-active #checker>.section-inner{width:100%;}
 .progress-bar{display:flex;gap:8px;margin-bottom:48px;}
 .progress-step{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background 0.4s ease;}
 .progress-step.done{background:var(--gold);}
@@ -314,7 +317,7 @@ footer{padding:80px 24px 40px;background:var(--text-main);color:#fff;text-align:
 .warning-box{background:#fffbeb;border:1px solid #fde68a;border-radius:var(--radius-sm);padding:20px;margin-bottom:20px;font-size:14px;color:#92400e;line-height:1.6;display:none;font-weight:500;}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){nav{padding:16px 24px;}.nav-links{display:none;}.options-grid{grid-template-columns:1fr;}.contact-grid{grid-template-columns:1fr;gap:48px;}.checker-box{padding:32px 20px;}section{padding:80px 20px;}.cookie-banner{padding:20px;flex-direction:column;text-align:center;}.cookie-banner-visible .wa-btn{bottom:236px;right:20px;width:58px;height:58px;}.modal-inner{padding:40px 24px;}.hero-title,.hero-title-gold{font-size:40px;}}
+@media(max-width:768px){nav{padding:16px 24px;}.nav-links{display:none;}.options-grid{grid-template-columns:1fr;}.contact-grid{grid-template-columns:1fr;gap:48px;}.checker-box{padding:32px 20px;}section{padding:80px 20px;}body.checker-focus-active #checker{padding:72px 14px 36px;align-items:flex-start;}body.checker-focus-active .checker-box{border-radius:18px;padding:28px 16px;box-shadow:0 18px 34px -18px rgba(15,23,42,0.28);}.cookie-banner{padding:20px;flex-direction:column;text-align:center;}.cookie-banner-visible .wa-btn{bottom:236px;right:20px;width:58px;height:58px;}.modal-inner{padding:40px 24px;}.hero-title,.hero-title-gold{font-size:40px;}}
 
 .seo-guides{background:var(--bg-surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .seo-guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
@@ -1578,10 +1581,21 @@ function validateStep3(){
 }
 
 function setFocusMode(active){
+  document.body.classList.toggle('checker-focus-active',active);
   ['how','compensation','testimonials','faq','contact'].forEach(id=>{
     const el=document.getElementById(id);if(el)el.style.display=active?'none':'';
   });
   const nav=document.querySelector('.nav-links');if(nav)nav.style.visibility=active?'hidden':'visible';
+}
+
+function openClaimChecker(){
+  setFocusMode(true);
+  const box=document.querySelector('#checker .checker-box');
+  const target=box||document.getElementById('checker');
+  if(target){
+    const top=target.getBoundingClientRect().top+window.pageYOffset-72;
+    window.scrollTo({top:Math.max(top,0),behavior:'smooth'});
+  }
 }
 
 function showResult(){
@@ -2113,7 +2127,11 @@ function proceedUSClaim(){
     const wa=e.target.closest('a[href*="wa.me"]');
     if(wa)trackEvent('whatsapp_click',{destination:wa.href});
     const checker=e.target.closest('a[href="#checker"]');
-    if(checker)trackEvent('claim_checker_start',{source_text:checker.textContent.trim()});
+    if(checker){
+      e.preventDefault();
+      openClaimChecker();
+      trackEvent('claim_checker_start',{source_text:checker.textContent.trim()});
+    }
   });
 </script>
 </body>
