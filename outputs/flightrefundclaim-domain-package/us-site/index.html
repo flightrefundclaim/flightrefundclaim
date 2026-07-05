@@ -159,6 +159,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .trust-bar{background:var(--bg-surface-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 24px;display:flex;justify-content:center;gap:48px;flex-wrap:wrap;}
 .trust-item{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-muted);font-weight:500;}
 .trust-icon{color:var(--gold);font-size:18px;}
+.trust-proof{background:#fff;padding:54px 24px;border-bottom:1px solid var(--border);}
+.trust-proof-inner{max-width:980px;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-sm);}
+.trust-proof h2{font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1.15;margin-bottom:12px;color:var(--text-main);}
+.trust-proof p{color:var(--text-muted);font-size:16px;line-height:1.7;}
+.trust-proof-list{display:grid;gap:10px;color:var(--text-muted);font-size:14px;font-weight:600;}
+.trust-proof-link{display:inline-flex;margin-top:18px;color:var(--gold-dark);font-weight:700;text-decoration:none;}
+@media(max-width:768px){.trust-proof-inner{grid-template-columns:1fr;padding:24px;}}
 section{padding:110px 24px;position:relative;}
 .section-inner{max-width:1140px;margin:0 auto;position:relative;z-index:2;}
 .section-badge{display:inline-block;padding:6px 16px;border-radius:100px;margin-bottom:20px;border:1px solid rgba(212,175,55,0.3);background:rgba(212,175,55,0.05);color:var(--gold-dark);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;}
@@ -372,6 +379,20 @@ footer{padding:80px 24px 40px;background:var(--text-main);color:#fff;text-align:
   <div class="trust-item"><span class="trust-icon">✓</span> USD Payments via PayPal</div>
   <div class="trust-item"><span class="trust-icon">✓</span> Claims Back 6 Years</div>
 </div>
+<section class="trust-proof" id="trustProof" aria-labelledby="trustProofTitle">
+  <div class="trust-proof-inner">
+    <div>
+      <h2 id="trustProofTitle">A clearer trust page for careful passengers</h2>
+      <p>See how FlightRefundClaim works, what our no win, no fee promise means, and which business details still need to be confirmed before full publication.</p>
+      <a class="trust-proof-link" href="/about/">Read About / Trust →</a>
+    </div>
+    <div class="trust-proof-list">
+      <span>✓ 30% success fee only after recovery</span>
+      <span>✓ Passenger-rights claims service, not a law firm</span>
+      <span>✓ Business and data placeholders clearly marked</span>
+    </div>
+  </div>
+</section>
 <section id="how">
   <div class="section-inner reveal">
     <div class="section-badge">Process</div>
@@ -714,6 +735,7 @@ footer{padding:80px 24px 40px;background:var(--text-main);color:#fff;text-align:
       <a onclick="document.getElementById('compensation').scrollIntoView({behavior:'smooth'})">Compensation</a>
       <a onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">FAQ</a>
       <a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a>
+      <a href="/about/">About / Trust</a>
       <a onclick="openModal('privacyModal')">Privacy Policy</a>
       <a onclick="openModal('termsModal')">Terms & Conditions</a>
     </div>
@@ -2055,7 +2077,7 @@ function switchToPolish(){
 
   // FOOTER
   document.querySelectorAll('.footer-links a').forEach((el,i)=>{
-    ['Jak to działa','Odszkodowanie','FAQ','Kontakt','Polityka prywatności','Regulamin'][i]&&(el.textContent=['Jak to działa','Odszkodowanie','FAQ','Kontakt','Polityka prywatności','Regulamin'][i]);
+    ['Jak to działa','Odszkodowanie','FAQ','Kontakt','O nas / zaufanie','Polityka prywatności','Regulamin'][i]&&(el.textContent=['Jak to działa','Odszkodowanie','FAQ','Kontakt','O nas / zaufanie','Polityka prywatności','Regulamin'][i]);
   });
   const fc=document.querySelector('.footer-copy');if(fc)fc.textContent='© 2026 FlightRefundClaim. Wszelkie prawa zastrzeżone.';
   const fl=document.querySelector('.footer-legal');if(fl)fl.textContent='FlightRefundClaim to serwis dochodzenia odszkodowań dla pasażerów działający na podstawie rozporządzenia WE nr 261/2004 i UK261. Nie jesteśmy kancelarią prawną. Nasze wynagrodzenie w wysokości 30% jest pobierane wyłącznie po skutecznym odzyskaniu odszkodowania.';
