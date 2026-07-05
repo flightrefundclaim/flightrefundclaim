@@ -205,6 +205,12 @@ section{padding:110px 24px;position:relative;}
 body.checker-focus-active #hero,body.checker-focus-active .trust-bar,body.checker-focus-active .trust-proof,body.checker-focus-active #how,body.checker-focus-active #compensation,body.checker-focus-active #testimonials,body.checker-focus-active #guides,body.checker-focus-active #faq,body.checker-focus-active #contact{display:none!important;}
 body.checker-focus-active #checker{min-height:100svh;display:flex;align-items:flex-start;padding-top:96px;padding-bottom:48px;}
 body.checker-focus-active #checker>.section-inner{width:100%;}
+body.checker-focus-active{overflow:hidden;}
+body.checker-focus-active #navbar,body.checker-focus-active .top-banner,body.checker-focus-active .wa-btn,body.checker-focus-active .cookie-banner,body.checker-focus-active footer{display:none!important;}
+body.checker-focus-active #checker{position:fixed;inset:0;z-index:900;min-height:100svh;height:100svh;overflow:hidden;padding:10px;background:var(--bg-surface);}
+body.checker-focus-active #checker>.section-inner{height:100%;max-width:720px;display:flex;align-items:stretch;}
+body.checker-focus-active .checker-intro{display:none!important;}
+body.checker-focus-active .checker-box{width:100%;height:calc(100svh - 20px);max-height:calc(100svh - 20px);overflow-y:auto;-webkit-overflow-scrolling:touch;margin:0 auto;}
 .progress-bar{display:flex;gap:8px;margin-bottom:48px;}
 .progress-step{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background 0.4s ease;}
 .progress-step.done{background:var(--gold);}
@@ -317,7 +323,7 @@ footer{padding:80px 24px 40px;background:var(--text-main);color:#fff;text-align:
 .warning-box{background:#fffbeb;border:1px solid #fde68a;border-radius:var(--radius-sm);padding:20px;margin-bottom:20px;font-size:14px;color:#92400e;line-height:1.6;display:none;font-weight:500;}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){nav{padding:16px 24px;}.nav-links{display:none;}.options-grid{grid-template-columns:1fr;}.contact-grid{grid-template-columns:1fr;gap:48px;}.checker-box{padding:32px 20px;}section{padding:80px 20px;}body.checker-focus-active #checker{padding:72px 14px 36px;align-items:flex-start;}body.checker-focus-active .checker-box{border-radius:18px;padding:28px 16px;box-shadow:0 18px 34px -18px rgba(15,23,42,0.28);}.cookie-banner{padding:20px;flex-direction:column;text-align:center;}.cookie-banner-visible .wa-btn{bottom:236px;right:20px;width:58px;height:58px;}.modal-inner{padding:40px 24px;}.hero-title,.hero-title-gold{font-size:40px;}}
+@media(max-width:768px){nav{padding:16px 24px;}.nav-links{display:none;}.options-grid{grid-template-columns:1fr;}.contact-grid{grid-template-columns:1fr;gap:48px;}.checker-box{padding:32px 20px;}section{padding:80px 20px;}body.checker-focus-active #checker{padding:8px;align-items:stretch;}body.checker-focus-active .checker-box{height:calc(100svh - 16px);max-height:calc(100svh - 16px);border-radius:18px;padding:22px 16px;box-shadow:0 18px 34px -18px rgba(15,23,42,0.28);}.cookie-banner{padding:20px;flex-direction:column;text-align:center;}.cookie-banner-visible .wa-btn{bottom:236px;right:20px;width:58px;height:58px;}.modal-inner{padding:40px 24px;}.hero-title,.hero-title-gold{font-size:40px;}}
 
 .seo-guides{background:var(--bg-surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .seo-guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
@@ -445,7 +451,7 @@ footer{padding:80px 24px 40px;background:var(--text-main);color:#fff;text-align:
 </section>
 <section id="checker">
   <div class="section-inner reveal">
-    <div style="text-align:center">
+    <div class="checker-intro" style="text-align:center">
       <div class="section-badge">Free Check</div>
       <h2 class="section-title">Check Your <strong>Eligibility</strong></h2>
       <p class="section-sub" style="margin:0 auto 48px;">Answer a few quick questions to find out if you're owed compensation.</p>
@@ -1593,10 +1599,15 @@ function setFocusMode(active){
 function openClaimChecker(){
   setFocusMode(true);
   const box=document.querySelector('#checker .checker-box');
-  const target=box||document.getElementById('checker');
-  if(target){
-    const top=target.getBoundingClientRect().top+window.pageYOffset-72;
-    window.scrollTo({top:Math.max(top,0),behavior:'smooth'});
+  if(box){
+    box.scrollTop=0;
+  }
+  if(!document.body.classList.contains('checker-focus-active')){
+    const target=box||document.getElementById('checker');
+    if(target){
+      const top=target.getBoundingClientRect().top+window.pageYOffset-72;
+      window.scrollTo({top:Math.max(top,0),behavior:'smooth'});
+    }
   }
 }
 
